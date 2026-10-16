@@ -1,6 +1,6 @@
 # Guía de uso · RoadCraft Studio
 
-[Portada](../README.md) · [Documentación](README.md) · [Última descarga](https://github.com/OscarD0823/roadcraft/releases/latest)
+[Portada](../README.md) · [Documentación](README.md) · [Última descarga](https://github.com/OscarD0823/auralis-roadcraft/releases/latest)
 
 ## Primer inicio
 

@@ -1,6 +1,6 @@
 export const PROJECT_LINKS = Object.freeze({
   profile: 'https://github.com/OscarD0823',
-  repository: 'https://github.com/OscarD0823/roadcraft'
+  repository: 'https://github.com/OscarD0823/auralis-roadcraft'
 })
 export type ProjectLink = keyof typeof PROJECT_LINKS
 

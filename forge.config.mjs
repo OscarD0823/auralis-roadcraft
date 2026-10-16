@@ -23,7 +23,7 @@ export default {
         exe: 'Auralis RoadCraft Studio.exe',
         setupExe: 'Auralis RoadCraft Studio Setup.exe',
         setupIcon: join(currentDir, 'src/assets/app-icon.ico'),
-        iconUrl: 'https://raw.githubusercontent.com/OscarD0823/roadcraft/main/src/assets/app-icon.ico',
+        iconUrl: 'https://raw.githubusercontent.com/OscarD0823/auralis-roadcraft/main/src/assets/app-icon.ico',
         shortcutName: 'Auralis RoadCraft Studio',
         noMsi: true
       }

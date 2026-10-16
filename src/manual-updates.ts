@@ -24,9 +24,11 @@ export function isNewerVersion(candidate: string, current: string): boolean {
   return installed.prerelease
 }
 
+const repositorySlug = (repository: UpdateRepository) => 'auralis-' + repository
+
 export function releasePage(repository: UpdateRepository): string {
   if (repository !== 'snowrunner' && repository !== 'roadcraft') throw new Error('Invalid repository')
-  return `https://github.com/OscarD0823/${repository}/releases/latest`
+  return `https://github.com/OscarD0823/${repositorySlug(repository)}/releases/latest`
 }
 
 export function parseRelease(repository: UpdateRepository, currentVersion: string, data: unknown): UpdateInfo {
@@ -43,12 +45,12 @@ export function parseRelease(repository: UpdateRepository, currentVersion: strin
   const result: UpdateInfo = {
     status: isNewerVersion(latestVersion, currentVersion) ? 'available' : 'current',
     currentVersion, latestVersion,
-    releaseUrl: `https://github.com/OscarD0823/${repository}/releases/tag/${tag}`
+    releaseUrl: `https://github.com/OscarD0823/${repositorySlug(repository)}/releases/tag/${tag}`
   }
   if (result.status !== 'available') return result
   const installer = repository === 'snowrunner' ? 'SnowRunner' : 'RoadCraft'
   const names = [`Auralis.${installer}.Studio.Setup.exe`, `Auralis ${installer} Studio Setup.exe`, `${installer}.Studio.Setup.exe`, `${installer} Studio Setup.exe`]
-  const prefix = `https://github.com/OscarD0823/${repository}/releases/download/${tag}/`
+  const prefix = `https://github.com/OscarD0823/${repositorySlug(repository)}/releases/download/${tag}/`
   const assets = Array.isArray(release.assets) ? release.assets : []
   for (const item of assets) {
     if (!item || typeof item !== 'object') continue
@@ -74,7 +76,7 @@ export class ManualUpdates {
     const generation = ++this.generation
     this.latest = undefined
     const response = await this.request(
-      `https://api.github.com/repos/OscarD0823/${this.repository}/releases/latest`, {
+      `https://api.github.com/repos/OscarD0823/${repositorySlug(this.repository)}/releases/latest`, {
         headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'Studio-Manual-Updates',
           'X-GitHub-Api-Version': '2026-03-10' },
         signal: AbortSignal.timeout(15000), redirect: 'error'

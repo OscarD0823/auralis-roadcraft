@@ -21,7 +21,7 @@ assert(bundle.includes('auto_materials_library.sso'),'Installer package lacks th
 const renderer=entries.find(entry=>/[/\\]assets[/\\]index-[^/\\]+\.js$/.test(entry))
 assert(renderer,'Missing renderer bundle')
 const rendererBundle=extractFile(archive,renderer.slice(1)).toString()
-for(const key of ['machine--excavator','sand-2','sand-discharge','scout-shoulder','grade-clearance','roadCompanyColor2','data-project-link','https://github.com/OscarD0823/roadcraft','sand-map-preset','data-variant-toggle','data-road-menu','data-road-enable','road-dialog','NO deshace'])assert(rendererBundle.includes(key),'Outdated renderer: '+key)
+for(const key of ['machine--excavator','sand-2','sand-discharge','scout-shoulder','grade-clearance','roadCompanyColor2','data-project-link','https://github.com/OscarD0823/auralis-roadcraft','sand-map-preset','data-variant-toggle','data-road-menu','data-road-enable','road-dialog','NO deshace'])assert(rendererBundle.includes(key),'Outdated renderer: '+key)
 assert(bundle.includes('originalLinkedValues'),'Installer lacks precise linked-value restoration')
 assert(bundle.includes('roadZoneSnapshots') && bundle.includes('roadcraft:free-roads'),'Installer lacks reversible map-zone mode')
 assert(rendererBundle.includes('data-draft-notice') && rendererBundle.includes('Descartar borrador'),'Installer lacks shared session drafts')

@@ -8,4 +8,4 @@
 - [Historial de versiones](../CHANGELOG.md): notas agrupadas en `releases/`.
 - [Archivo histórico](archive/README.md): decisiones de versiones anteriores.
 
-La aplicación y sus actualizaciones se descargan desde [GitHub Releases](https://github.com/OscarD0823/roadcraft/releases/latest). No necesitas los archivos del código fuente para instalarla.
+La aplicación y sus actualizaciones se descargan desde [GitHub Releases](https://github.com/OscarD0823/auralis-roadcraft/releases/latest). No necesitas los archivos del código fuente para instalarla.

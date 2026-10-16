@@ -7,7 +7,7 @@
 <p align="center">Build, transport and recover. A visual editor for your RoadCraft fleet and saves.</p>
 
 <p align="center">
-  <a href="https://github.com/OscarD0823/roadcraft/releases/latest"><strong>Download for Windows</strong></a> ·
+  <a href="https://github.com/OscarD0823/auralis-roadcraft/releases/latest"><strong>Download for Windows</strong></a> ·
   <a href="docs/user-guide.md">User guide (Spanish)</a> ·
   <a href="CHANGELOG.md">Release history</a> ·
   <a href="README.md">Español</a>
@@ -15,7 +15,7 @@
 
 ## Install
 
-Open **Assets** on the [latest release](https://github.com/OscarD0823/roadcraft/releases/latest) and download the **Setup.exe** installer. Requires Windows x64 and a local RoadCraft installation; Node.js is only needed for development. Updates are distributed through GitHub, not Microsoft Store.
+Open **Assets** on the [latest release](https://github.com/OscarD0823/auralis-roadcraft/releases/latest) and download the **Setup.exe** installer. Requires Windows x64 and a local RoadCraft installation; Node.js is only needed for development. Updates are distributed through GitHub, not Microsoft Store.
 
 **Optional updates:** use ↻ to check for a new release, download it in your browser or keep the current version. Nothing is downloaded or installed automatically.
 
@@ -41,6 +41,6 @@ See the [documentation index](docs/README.md), [development guide](docs/developm
 
 ## Author and license
 
-By [@OscarD0823](https://github.com/OscarD0823). Companion project: [SnowRunner Studio](https://github.com/OscarD0823/snowrunner).
+By [@OscarD0823](https://github.com/OscarD0823). Companion project: [SnowRunner Studio](https://github.com/OscarD0823/auralis-snowrunner).
 
 [MIT license](LICENSE) · [Resource and dependency notices](NOTICE.md). Unofficial tool, not affiliated with the game's rights holders. Game models, textures and shop images are read locally and are not redistributed.

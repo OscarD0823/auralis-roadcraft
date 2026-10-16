@@ -1,6 +1,6 @@
 # Historial · RoadCraft Studio
 
-[Portada](README.md) · [Documentación](docs/README.md) · [Última descarga](https://github.com/OscarD0823/roadcraft/releases/latest)
+[Portada](README.md) · [Documentación](docs/README.md) · [Última descarga](https://github.com/OscarD0823/auralis-roadcraft/releases/latest)
 
 ## Versión actual: 0.9.8
 
@@ -32,4 +32,4 @@ Consola de reconstrucción con paneles y controles de acero, tonos de arena y ma
 - [0.7.0](docs/releases/0.7.0.md)
 - [0.6.0](docs/releases/0.6.0.md)
 
-Las notas describen el estado de cada versión en su momento. Las publicaciones y sus instaladores se conservan en [GitHub Releases](https://github.com/OscarD0823/roadcraft/releases); no se recrea ni reescribe el historial al ordenar la documentación.
+Las notas describen el estado de cada versión en su momento. Las publicaciones y sus instaladores se conservan en [GitHub Releases](https://github.com/OscarD0823/auralis-roadcraft/releases); no se recrea ni reescribe el historial al ordenar la documentación.

@@ -7,7 +7,7 @@ function fixture(repository: UpdateRepository, version = '2.7.0') {
   const name = repository === 'snowrunner' ? 'SnowRunner.Studio.Setup.exe' : 'RoadCraft.Studio.Setup.exe'
   return { tag_name: 'v' + version, draft: false, prerelease: false, assets: [{
     name, state: 'uploaded', size: 123,
-    browser_download_url: `https://github.com/OscarD0823/${repository}/releases/download/v${version}/${name}`
+    browser_download_url: `https://github.com/OscarD0823/auralis-${repository}/releases/download/v${version}/${name}`
   }] }
 }
 
@@ -49,7 +49,7 @@ for (const repository of repositories) {
   let calls = 0, failure = false
   const request = async (input: unknown, options?: RequestInit) => {
     calls++
-    assert.equal(input, `https://api.github.com/repos/OscarD0823/${repository}/releases/latest`)
+    assert.equal(input, `https://api.github.com/repos/OscarD0823/auralis-${repository}/releases/latest`)
     assert.equal(options?.redirect, 'error'); assert(options?.signal)
     assert(!JSON.stringify(options).includes('Authorization'))
     return new Response(failure ? '{}' : JSON.stringify(release), { status: failure ? 403 : 200 })

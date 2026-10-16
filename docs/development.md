@@ -7,7 +7,7 @@
 Requisitos: Windows x64, Node.js 22 o superior y npm.
 
 ```powershell
-git clone https://github.com/OscarD0823/roadcraft.git
+git clone https://github.com/OscarD0823/auralis-roadcraft.git
 cd roadcraft
 npm ci
 npm run check

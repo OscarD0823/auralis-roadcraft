@@ -7,7 +7,7 @@
 <p align="center">Construye, transporta y recupera. Un editor visual para tu flota y tus partidas de RoadCraft.</p>
 
 <p align="center">
-  <a href="https://github.com/OscarD0823/roadcraft/releases/latest"><strong>Descargar para Windows</strong></a> ·
+  <a href="https://github.com/OscarD0823/auralis-roadcraft/releases/latest"><strong>Descargar para Windows</strong></a> ·
   <a href="docs/user-guide.md">Guía de uso</a> ·
   <a href="CHANGELOG.md">Novedades</a> ·
   <a href="README.EN.md">English</a>
@@ -15,7 +15,7 @@
 
 ## Instalar
 
-En la [última versión publicada](https://github.com/OscarD0823/roadcraft/releases/latest), abre **Assets** y descarga el archivo que termina en **Setup.exe**. Está pensado para Windows x64 con RoadCraft instalado; no necesitas Node.js para usarlo. Las actualizaciones se distribuyen por GitHub, no por Microsoft Store.
+En la [última versión publicada](https://github.com/OscarD0823/auralis-roadcraft/releases/latest), abre **Assets** y descarga el archivo que termina en **Setup.exe**. Está pensado para Windows x64 con RoadCraft instalado; no necesitas Node.js para usarlo. Las actualizaciones se distribuyen por GitHub, no por Microsoft Store.
 
 **Actualizaciones opcionales:** el botón ↻ permite buscar una versión nueva, descargarla en el navegador o seguir con la actual. No hay descargas ni instalaciones automáticas.
 
@@ -46,6 +46,6 @@ Carreteras libres y el suministro de gran alcance fueron comprobados en partida 
 
 ## Autor y licencia
 
-Creado por [@OscarD0823](https://github.com/OscarD0823). También disponible: [SnowRunner Studio](https://github.com/OscarD0823/snowrunner).
+Creado por [@OscarD0823](https://github.com/OscarD0823). También disponible: [SnowRunner Studio](https://github.com/OscarD0823/auralis-snowrunner).
 
 Código bajo [licencia MIT](LICENSE), con [avisos de recursos y dependencias](NOTICE.md). Herramienta no oficial, sin afiliación con los titulares de RoadCraft. Los modelos, texturas y carátulas se leen de tu instalación; no se incluyen en el repositorio ni en el instalador.
