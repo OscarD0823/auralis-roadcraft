@@ -75,6 +75,7 @@ jobs:
       - name: Publicar archivos
         uses: softprops/action-gh-release@v3
         with:
+          name: Auralis RoadCraft Studio ${{ github.ref_name }} · BETA
           generate_release_notes: true
           files: |
             out/make/squirrel.windows/x64/*.exe
