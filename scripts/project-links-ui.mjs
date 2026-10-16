@@ -22,7 +22,7 @@ export async function testProjectLinks({ evaluate, call, output, repository }) {
       const profile=state.links.find(a=>a.key==='profile'),repo=state.links.find(a=>a.key==='repository')
       assert.equal(profile.href,'https://github.com/OscarD0823')
       assert.match(profile.text,/@OscarD0823/)
-      assert.equal(repo.href,'https://github.com/OscarD0823/'+repository)
+      assert.equal(repo.href,'https://github.com/OscarD0823/auralis-'+repository)
       for(const a of state.links){
         assert(a.visible,'Hidden creator/repository link at '+width)
         assert(a.focused&&parseFloat(a.outline)>0,'Keyboard focus not visible')

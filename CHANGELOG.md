@@ -2,7 +2,7 @@
 
 [Portada](README.md) · [Documentación](docs/README.md) · [Última descarga](https://github.com/OscarD0823/auralis-roadcraft/releases/latest)
 
-## Versión actual: 0.10.2
+## Versión actual: 0.10.3
 
 Consola de reconstrucción con paneles y controles de acero, tonos de arena y maquinaria, iconos coherentes y mejor lectura de valores. Mantiene el visor lateral, la secuencia de obras y las actualizaciones voluntarias.
 
@@ -10,6 +10,7 @@ Actualización Auralis con el logo original, enlaces vigentes y recuperación lo
 
 ## Notas disponibles
 
+- [0.10.3](docs/releases/0.10.3.md)
 - [0.10.2](docs/releases/0.10.2.md)
 - [0.9.8](docs/releases/0.9.8.md)
 - [0.9.7](docs/releases/0.9.7.md)
