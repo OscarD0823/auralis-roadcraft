@@ -6,12 +6,12 @@ import { openPromise } from 'yauzl'
 import { join } from 'node:path'
 import { listPackage, extractFile } from '@electron/asar'
 
-const root = process.cwd(), archive = join(root,'out/Auralis RoadCraft Studio-win32-x64/resources/app.asar')
+const root = process.cwd(), output = process.env.ROADCRAFT_BUILD_OUT || join(root, 'out'), archive = join(output,'Auralis RoadCraft Studio-win32-x64/resources/app.asar')
 const version = JSON.parse(await readFile(join(root,'package.json'),'utf8')).version
 assert.equal(JSON.parse(extractFile(archive,'package.json').toString()).version,version)
 const entries=listPackage(archive)
 assert.deepEqual(entries.filter(entry=>/\.(?:tpl(?:_data)?|pct(?:_mip)?|fbx|blend|pak|dds|tga)$/i.test(entry)),[],'Game assets must not be distributed')
-const main = entries.find(entry=>entry.replaceAll('\\','/').endsWith('/.vite/build/index.js'))
+const main = entries.find(entry=>entry.replaceAll('\\','/').endsWith('/.vite/build/index.cjs'))
 assert(main,'Missing main bundle')
 const bundle=extractFile(archive,main.slice(1)).toString()
 assert(bundle.includes('geometry-v11'),'Installer package contains an outdated model reader')
@@ -26,8 +26,8 @@ assert(bundle.includes('originalLinkedValues'),'Installer lacks precise linked-v
 assert(bundle.includes('roadZoneSnapshots') && bundle.includes('roadcraft:free-roads'),'Installer lacks reversible map-zone mode')
 assert(rendererBundle.includes('data-draft-notice') && rendererBundle.includes('Descartar borrador'),'Installer lacks shared session drafts')
 assert(!rendererBundle.includes('10 km (experimental)') && !rendererBundle.includes('Activar modo experimental'),'Installer still labels validated features as experimental')
-const releases = (await readFile(join(root,'out/make/squirrel.windows/x64/RELEASES'),'utf8')).trim().split(/\s+/)
-const nupkg=join(root,'out/make/squirrel.windows/x64',releases[1])
+const releases = (await readFile(join(output,'make/squirrel.windows/x64/RELEASES'),'utf8')).trim().split(/\s+/)
+const nupkg=join(output,'make/squirrel.windows/x64',releases[1])
 assert(releases[1].includes('-'+version+'-'))
 assert.equal(Number(releases[2]),(await stat(nupkg)).size)
 assert.equal(releases[0].toLowerCase(),createHash('sha1').update(await readFile(nupkg)).digest('hex'))

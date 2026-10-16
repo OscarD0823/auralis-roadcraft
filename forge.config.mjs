@@ -40,6 +40,7 @@ export default {
           },
           {
             entry: 'src/preload.ts',
+            target: 'preload',
             config: 'vite.preload.config.ts'
           }
         ],

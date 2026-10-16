@@ -3,7 +3,7 @@
   "productName": "Auralis RoadCraft Studio",
   "version": "0.10.0",
   "description": "Editor visual y seguro para vehículos, tráilers, convoyes logísticos y partidas de RoadCraft.",
-  "main": ".vite/build/index.js",
+  "main": ".vite/build/index.cjs",
   "author": {
     "name": "OscarD0823"
   },
@@ -55,9 +55,9 @@
     "yazl": "^3.3.1"
   },
   "devDependencies": {
-    "@electron-forge/cli": "^7.11.2",
-    "@electron-forge/maker-squirrel": "^7.11.2",
-    "@electron-forge/plugin-vite": "^7.11.2",
+    "@electron-forge/cli": "^8.0.1",
+    "@electron-forge/maker-squirrel": "^8.0.1",
+    "@electron-forge/plugin-vite": "^8.0.1",
     "@types/three": "^0.186.0",
     "@types/yauzl": "^3.4.0",
     "@types/yazl": "^3.3.1",
@@ -67,7 +67,7 @@
     "sass": "^1.104.0",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
-    "vite": "^7.3.6",
+    "vite": "^8.3.4",
     "vue-tsc": "^3.3.11"
   }
 }

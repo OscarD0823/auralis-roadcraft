@@ -2,13 +2,12 @@ import { app, BrowserWindow, ipcMain, shell } from 'electron'
 import { projectLinkUrl } from '../project-links'
 import { ManualUpdates } from '../manual-updates'
 import squirrelStartup from 'electron-squirrel-startup'
-import { dirname, join, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import { mkdirSync } from 'node:fs'
-import { fileURLToPath } from 'node:url'
 import type { SaveGameChanges, SavePayload } from '../shared'
 import { RoadCraftService } from './roadcraft'
 
-const currentDir = dirname(fileURLToPath(import.meta.url))
+const currentDir = __dirname
 let mainWindow: BrowserWindow | undefined
 if (process.env.ROADCRAFT_DATA_ROOT) {
   const dataRoot = resolve(process.env.ROADCRAFT_DATA_ROOT)
