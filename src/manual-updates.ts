@@ -47,7 +47,7 @@ export function parseRelease(repository: UpdateRepository, currentVersion: strin
   }
   if (result.status !== 'available') return result
   const installer = repository === 'snowrunner' ? 'SnowRunner' : 'RoadCraft'
-  const names = [`${installer}.Studio.Setup.exe`, `${installer} Studio Setup.exe`]
+  const names = [`Auralis.${installer}.Studio.Setup.exe`, `Auralis ${installer} Studio Setup.exe`, `${installer}.Studio.Setup.exe`, `${installer} Studio Setup.exe`]
   const prefix = `https://github.com/OscarD0823/${repository}/releases/download/${tag}/`
   const assets = Array.isArray(release.assets) ? release.assets : []
   for (const item of assets) {

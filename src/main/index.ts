@@ -15,6 +15,9 @@ if (process.env.ROADCRAFT_DATA_ROOT) {
   mkdirSync(dataRoot, { recursive: true }); app.setPath('userData', dataRoot)
 }
 
+// Preserve the existing profile while the visible product name changes.
+if(!process.env.ROADCRAFT_DATA_ROOT)app.setPath('userData', join(app.getPath('appData'), 'RoadCraft Studio'))
+
 if (squirrelStartup) {
   app.quit()
 } else if (!app.requestSingleInstanceLock()) {
@@ -87,7 +90,7 @@ async function createWindow() {
     minHeight: 520,
     show: false,
     backgroundColor: '#0b1220',
-    title: 'RoadCraft Studio',
+    title: 'Auralis RoadCraft Studio',
     icon: join(currentDir, 'app-icon.ico'),
     webPreferences: {
       preload: join(currentDir, 'preload.cjs'),

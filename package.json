@@ -1,7 +1,7 @@
 {
   "name": "roadcraft-studio",
-  "productName": "RoadCraft Studio",
-  "version": "0.9.8",
+  "productName": "Auralis RoadCraft Studio",
+  "version": "0.10.0",
   "description": "Editor visual y seguro para vehículos, tráilers, convoyes logísticos y partidas de RoadCraft.",
   "main": ".vite/build/index.js",
   "author": {
@@ -43,7 +43,8 @@
     "make": "cross-env NODE_ENV=production electron-forge make --platform=win32 --arch=x64",
     "build:exe": "npm run make",
     "test:ui": "node scripts/test-view-ui.mjs",
-    "test:journey": "cross-env ROADCRAFT_JOURNEY_ONLY=1 node scripts/test-view-ui.mjs"
+    "test:journey": "cross-env ROADCRAFT_JOURNEY_ONLY=1 node scripts/test-view-ui.mjs",
+    "test:recovery": "esbuild scripts/test-recovery.ts --bundle --platform=node --format=esm --outfile=.vite/test-recovery.mjs && node .vite/test-recovery.mjs"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",

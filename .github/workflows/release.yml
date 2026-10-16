@@ -60,6 +60,9 @@ jobs:
       - name: Validar carreteras libres y restauración
         run: npm run test:roads
 
+      - name: Validar recuperación local sin modificar el juego
+        run: npm run test:recovery
+
       - name: Crear instalador
         run: npm run make
 

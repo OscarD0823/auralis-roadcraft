@@ -4,7 +4,7 @@
       <div class="brand">
         <img :src="iconUrl" alt="" class="brand__icon">
         <div class="brand__copy">
-          <strong>RoadCraft Studio</strong>
+          <strong>Auralis RoadCraft Studio</strong>
           <nav class="project-links" :aria-label="t('projectLinks')">
             <a :href="PROJECT_LINKS.profile" target="_blank" rel="noopener noreferrer" data-project-link="profile" :title="t('githubAuthor')" @click.prevent="openProjectLink('profile')"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 7c.85 0 1.71.11 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.57c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" /></svg>@OscarD0823</a>
             <a :href="PROJECT_LINKS.repository" target="_blank" rel="noopener noreferrer" data-project-link="repository" :title="t('githubRepository')" :aria-label="t('githubRepository')" @click.prevent="openProjectLink('repository')">Repo ↗</a>
@@ -28,6 +28,7 @@
       </div>
     </header>
 
+    <p v-if="recoveryMessage" role="status" class="recovery-status">{{ recoveryMessage }}</p>
     <section class="workspace-nav">
       <span class="sidebar-caption">{{ t('fleetWorkspace') }}</span>
       <nav class="primary-nav" :aria-label="t('mainSections')">
@@ -431,7 +432,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { computed, onMounted, onBeforeUnmount, reactive, ref, watch } from 'vue'
 import type { CompanyPaint, ContentEntry, ContentKind, EditableParameter, ParameterValue, SaveGameData, SaveSlotSummary, ScanResult, RoadZoneStatus } from '../shared'
 import { entryInSection, vehicleFamilyKey } from '../shared'
 import { locales, translate } from './i18n'
@@ -443,6 +444,8 @@ import WorkspaceGlyph from './components/workspace-glyph.vue'
 import { useDecorativeVisibility } from './use-decorative-visibility'
 import { PROJECT_LINKS, type ProjectLink } from '../project-links'
 import { createEntryDraft, hasPendingChanges, rebaseEntryDraft, type EntryDraft } from './entry-drafts'
+
+import {readRecovery,writeRecovery,matchingSaveDraft,type Recovery} from './recovery'
 
 type View = 'all' | 'truck' | 'trailer' | 'ai' | 'modified' | 'other' | 'save'
 type SaveSection = 'stats' | 'trucks' | 'maps'
@@ -465,7 +468,9 @@ const loading = ref(false)
 const saving = ref(false)
 const scanResult = ref<ScanResult>()
 const selectedId = ref<string>()
-const entryDrafts = reactive<Record<string, EntryDraft>>({})
+const recovered=readRecovery(localStorage)
+const entryDrafts = reactive<Record<string, EntryDraft>>(recovered.entries)
+selectedId.value=recovered.selected
 const selectedDraft = computed(() => selectedId.value ? entryDrafts[selectedId.value] : undefined)
 const draftValues = computed(() => selectedDraft.value?.values ?? {})
 const applyToVariants = computed({
@@ -487,6 +492,16 @@ watch(() => saveDraft.value?.companyCustomization?.truckMaterialName, async mate
     if (request === paintRequest) companyPaint.value = paint
   } catch { /* Missing game/library must not prevent reading a valid save. */ }
 })
+let recoveryTimer:ReturnType<typeof setTimeout>|undefined
+const recoveryMessage=ref('')
+function persistRecovery(){
+ if(recoveryTimer)clearTimeout(recoveryTimer);recoveryTimer=undefined
+ try{writeRecovery(localStorage,{version:1,entries:entryDrafts,save:saveDraft.value??recovered.save,selected:selectedId.value});recoveryMessage.value='Autoguardado local de borradores'}catch{recoveryMessage.value='No se pudo guardar el borrador: libera espacio antes de cerrar'}
+}
+watch([entryDrafts,saveDraft,selectedId],()=>{if(!recoveryTimer)recoveryTimer=setTimeout(persistRecovery,400)},{deep:true})
+const onHidden=()=>{if(document.visibilityState==='hidden')persistRecovery()}
+onMounted(()=>{window.addEventListener('pagehide',persistRecovery);document.addEventListener('visibilitychange',onHidden)})
+onBeforeUnmount(()=>{persistRecovery();window.removeEventListener('pagehide',persistRecovery);document.removeEventListener('visibilitychange',onHidden)})
 const saveLoading = ref(false)
 const saveWriting = ref(false)
 const saveSection = ref<SaveSection>('stats')
@@ -730,7 +745,11 @@ async function chooseSaveFile() {
 async function loadSaveFile(filePath: string, showLoader = true) {
   if (showLoader) saveLoading.value = true
   try {
-    saveDraft.value = structuredClone(await window.roadcraft.readSaveGame(filePath))
+    const current=await window.roadcraft.readSaveGame(filePath)
+    const restored=matchingSaveDraft(current,recovered.save)
+    saveDraft.value = structuredClone(restored??current)
+    if(restored){recovered.save=undefined;recoveryMessage.value='Borrador recuperado. Revisa y pulsa Guardar para aplicarlo al juego.'}
+    else if(recovered.save?.filePath===filePath)recoveryMessage.value='La partida cambió fuera del editor; no se aplicó el borrador anterior.'
   } catch (error) {
     showError(error)
   } finally {

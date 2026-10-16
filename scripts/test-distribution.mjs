@@ -6,7 +6,7 @@ import { openPromise } from 'yauzl'
 import { join } from 'node:path'
 import { listPackage, extractFile } from '@electron/asar'
 
-const root = process.cwd(), archive = join(root,'out/RoadCraft Studio-win32-x64/resources/app.asar')
+const root = process.cwd(), archive = join(root,'out/Auralis RoadCraft Studio-win32-x64/resources/app.asar')
 const version = JSON.parse(await readFile(join(root,'package.json'),'utf8')).version
 assert.equal(JSON.parse(extractFile(archive,'package.json').toString()).version,version)
 const entries=listPackage(archive)

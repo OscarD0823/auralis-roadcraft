@@ -28,7 +28,7 @@ try {await readFile(join(dataRoot,'settings.json'))}catch{
 const log=createWriteStream(join(output,'application.log'))
 const companyFixture=process.env.ROADCRAFT_COMPANY_FIXTURE==='1'
 if(companyFixture)await promisify(execFile)(process.execPath,[join(root,'node_modules/tsx/dist/cli.mjs'),join(root,'scripts/qa-company-fixture.ts')],{cwd:root,windowsHide:true})
-const child = spawn(process.env.ROADCRAFT_APP_EXE ?? join(root, 'out', 'RoadCraft Studio-win32-x64', 'RoadCraft Studio.exe'), [`--remote-debugging-port=${port}`, `--user-data-dir=${join(output, 'data')}`], { stdio:['ignore','pipe','pipe'], windowsHide:false, env: { ...process.env, ROADCRAFT_DATA_ROOT: join(output, 'data'),...(companyFixture?{LOCALAPPDATA:join(output,'company-local')}:{}) } })
+const child = spawn(process.env.ROADCRAFT_APP_EXE ?? join(root, 'out', 'Auralis RoadCraft Studio-win32-x64', 'Auralis RoadCraft Studio.exe'), [`--remote-debugging-port=${port}`, `--user-data-dir=${join(output, 'data')}`], { stdio:['ignore','pipe','pipe'], windowsHide:false, env: { ...process.env, ROADCRAFT_DATA_ROOT: join(output, 'data'),...(companyFixture?{LOCALAPPDATA:join(output,'company-local')}:{}) } })
 child.stdout.pipe(log,{end:false});child.stderr.pipe(log,{end:false})
 child.on('exit',(code,signal)=>{if(!log.writableEnded)log.end(`\nApplication exit: ${code} ${signal}\n`)})
 let socket
@@ -70,7 +70,7 @@ try {
   const {stdout}=await promisify(execFile)('powershell.exe',['-NoProfile','-NonInteractive','-Command',`Get-Process -Id ${child.pid} | ForEach-Object { [pscustomobject]@{Visible=($_.MainWindowHandle -ne 0);Title=$_.MainWindowTitle} } | ConvertTo-Json -Compress`],{windowsHide:true})
   const nativeWindow=JSON.parse(stdout.trim())
   assert.equal(nativeWindow.Visible,true,'Application loaded but its Windows window stayed hidden')
-  assert.equal(nativeWindow.Title,'RoadCraft Studio')
+  assert.equal(nativeWindow.Title,'Auralis RoadCraft Studio')
   assert.equal((await evaluate('window.roadcraft.getSettings()')).version,JSON.parse(await readFile(join(root,'package.json'),'utf8')).version,'Running app is not the version being distributed')
   const projectLinks=await testProjectLinks({evaluate,call,output,repository:'roadcraft'})
   const consoleDesign=await testConsoleDesign({evaluate,call,output,game:'roadcraft'})

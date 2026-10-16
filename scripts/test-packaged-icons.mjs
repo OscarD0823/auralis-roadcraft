@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const snow = JSON.parse(await readFile(join(root,'package.json'),'utf8')).name === 'snowrunner-studio-es'
-const name = snow ? 'SnowRunner Studio' : 'RoadCraft Studio'
+const name = JSON.parse(await readFile(join(root,'package.json'),'utf8')).productName
 const source = await readFile(join(root, snow ? 'src/images/favicon.ico' : 'src/assets/app-icon.ico'))
 const directory = process.env.STUDIO_PACKAGED_DIR || join(root,'out',name+'-win32-x64')
 const executable = await readFile(join(directory,name+'.exe'))

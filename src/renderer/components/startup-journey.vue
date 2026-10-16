@@ -57,7 +57,7 @@
         <path class="paver-heat" d="M8 50q-5-8 0-16t0-16m15 34q-4-9 0-17t0-13" stroke="#d5d8ba" fill="none" stroke-width="1" opacity=".18"/>
       </g>
       <g class="machine machine--roller" data-machine="roller"><JourneyVehicle kind="roller" :decal="appEmblem"/></g>
-      <g class="machine machine--cargo" data-machine="cargo"><JourneyVehicle kind="cargo" :decal="appEmblem" label="RoadCraft Studio"/></g>
+      <g class="machine machine--cargo" data-machine="cargo"><JourneyVehicle kind="cargo" :decal="appEmblem" label="Auralis RoadCraft Studio"/></g>
       <path d="M0 239H900" stroke="#d7b68c" opacity=".35" />
     </svg>
   </div>

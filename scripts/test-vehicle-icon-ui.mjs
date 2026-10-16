@@ -34,7 +34,7 @@ export async function testVehicleIcon({ evaluate, call, output, game = 'snowrunn
   await evaluate(`(async()=>{
     const sheet=document.createElement('section');sheet.id='qa-vehicle-icon-sheet';
     sheet.style.cssText='position:fixed;inset:0;z-index:99999;background:#14212c;color:#f1f5f9;padding:28px;font:15px Segoe UI;overflow:auto;box-sizing:border-box';
-    const title=document.createElement('h1');title.textContent=${JSON.stringify(road?'RoadCraft Studio':'SnowRunner Studio')};sheet.append(title);
+    const title=document.createElement('h1');title.textContent=${JSON.stringify(road?'Auralis RoadCraft Studio':'Auralis SnowRunner Studio')};sheet.append(title);
     for(const [background,color] of [['#f3f5f7','#18212f'],['#0b1220','#f1f5f9']]){
       const row=document.createElement('div');row.style.cssText='display:flex;gap:16px;align-items:end;margin:12px 0;padding:18px;border-radius:12px;background:'+background+';color:'+color;
       for(const size of [16,24,32,48,64,128,256]){
